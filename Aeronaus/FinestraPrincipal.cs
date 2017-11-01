@@ -10,7 +10,6 @@ using System.Windows.Forms;
 
 namespace Aeronaus
 {
-
     public partial class finestraPrincipal : Form
     {
         SistemaControl sistemaControl = new SistemaControl();
@@ -23,19 +22,9 @@ namespace Aeronaus
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-            
-        }
-
         private void gestionarAvio_Click(object sender, EventArgs e)
         {
-            nausDisponibles = sistemaControl.NausDisponibles(ref aeronaus);
+            nausDisponibles = sistemaControl.nausDisponibles(ref aeronaus);
             if (nausDisponibles)
             {
                 this.Hide();
@@ -47,7 +36,7 @@ namespace Aeronaus
 
                 if (aeronauPilotada)
                 {
-                    sistemaControl.MantenimentAeri(ref aeronaus);
+                    sistemaControl.mantenimentAeri(ref aeronaus);
                     EstatNaus estatNaus = new EstatNaus(ref aeronaus);
                     estatNaus.ShowDialog();
                     this.Show();
@@ -62,10 +51,10 @@ namespace Aeronaus
 
         private void mantenimentAeri_Click(object sender, EventArgs e)
         {
-            nausDisponibles = sistemaControl.NausDisponibles(ref aeronaus);
+            nausDisponibles = sistemaControl.nausDisponibles(ref aeronaus);
             if (nausDisponibles)
             {
-                sistemaControl.MantenimentAeri(ref aeronaus);
+                sistemaControl.mantenimentAeri(ref aeronaus);
             }
             else
             {
@@ -83,7 +72,7 @@ namespace Aeronaus
 
         private void donarAlta_Click(object sender, EventArgs e)
         {
-            int posicioLliure = sistemaControl.PosicioLliure(ref aeronaus);
+            int posicioLliure = sistemaControl.posicioLliure(ref aeronaus);
             if (posicioLliure != 5)
             {
                 this.Hide();
@@ -95,26 +84,6 @@ namespace Aeronaus
             {
                 MessageBox.Show("No hi han espais lliures");
             }
-        }
-
-        private void groupBox1_Enter_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panelConsola_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void sortir_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

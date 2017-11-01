@@ -54,7 +54,6 @@ namespace Aeronaus
             aeronauPilotada = true;
             GestionarNau gestionarNau = new GestionarNau(ref sistemaControl, 0, ref aeronaus);
             gestionarNau.ShowDialog();
-
         }
 
         public Boolean getAeronauPilotat
@@ -92,16 +91,6 @@ namespace Aeronaus
             aeronauPilotada = true;
             GestionarNau gestionarNau = new GestionarNau(ref sistemaControl, 4, ref aeronaus);
             gestionarNau.ShowDialog();
-        }
-
-        private void menuSeleccionarNau_EnabledChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void menuSeleccionarNau_TextChanged(object sender, EventArgs e)
-        {
-            
         }
     }
 }

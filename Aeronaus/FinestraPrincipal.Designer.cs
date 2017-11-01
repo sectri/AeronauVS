@@ -86,7 +86,6 @@
             this.label1.Size = new System.Drawing.Size(80, 17);
             this.label1.TabIndex = 5;
             this.label1.Text = "consoleOut";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // consoleOut
             // 
@@ -95,7 +94,6 @@
             this.consoleOut.Size = new System.Drawing.Size(567, 69);
             this.consoleOut.TabIndex = 5;
             this.consoleOut.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.consoleOut.Click += new System.EventHandler(this.label1_Click);
             // 
             // textSortida
             // 
@@ -105,7 +103,6 @@
             this.textSortida.TabIndex = 5;
             this.textSortida.Text = "a";
             this.textSortida.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.textSortida.Click += new System.EventHandler(this.label1_Click);
             // 
             // finestraPrincipal
             // 
@@ -123,7 +120,6 @@
             this.Name = "finestraPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Aeronaus - Sergi Alonso Vicente";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 
         }

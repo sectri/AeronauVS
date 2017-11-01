@@ -22,44 +22,18 @@ namespace Aeronaus
             this.posicioLliure = posicioLliure;
             this.sistemaControl = sistemaControl;
             this.aeronaus = aeronaus;
-            
         }
 
         public DonarAlta()
         {
 
         }
-
-        private void DonarAlta_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void introduirModel_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        
         private void crearNau_Click(object sender, EventArgs e)
         {
             Boolean aeronauCreada = false;
-            int x = posicioLliure * 100;
-            int y = posicioLliure * 100;
+            int x = (posicioLliure + 1) * 100;
+            int y = (posicioLliure + 1) * 100;
             String model = introduirModel.Text;
             String fabricant = introduirFabricant.Text;
             String capacitatString = introduirCapacitat.Text;
@@ -71,27 +45,12 @@ namespace Aeronaus
                 return;
             }
             int capacitat = int.Parse(capacitatString);
-            this.sistemaControl.CrearAeronau(posicioLliure, model, fabricant, capacitat, x, y, matricula, ref aeronauCreada, ref aeronaus);
+            this.sistemaControl.crearAeronau(posicioLliure, model, fabricant, capacitat, x, y, matricula, ref aeronauCreada, ref aeronaus);
             if (aeronauCreada)
             {
                 this.Hide();
                 this.Close();
             }
-        }
-
-        private void introduirFabricant_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void introduirCapacitat_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void introduirMatricula_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void onlyNumeric(object sender, KeyPressEventArgs e)

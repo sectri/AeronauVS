@@ -9,7 +9,7 @@ namespace Aeronaus
 {
     class SistemaControl
     {
-        public void Perills(ref Aeronau[] aeronaus)
+        public void perills(ref Aeronau[] aeronaus)
         {
             int c2;
             for (int c1 = 0; c1 < aeronaus.Length; c1++)
@@ -48,7 +48,7 @@ namespace Aeronaus
             }
         }
 
-        public void MantenimentAeri(ref Aeronau[] aeronaus)
+        public void mantenimentAeri(ref Aeronau[] aeronaus)
         {
             Boolean borrada = false;
             for (int c = 0; c < aeronaus.Length; c++)
@@ -70,7 +70,7 @@ namespace Aeronaus
             }
         }
 
-        public Boolean NausDisponibles(ref Aeronau[] aeronaus)
+        public Boolean nausDisponibles(ref Aeronau[] aeronaus)
         {
             for (int c = 0; c < aeronaus.Length; c++)
             {
@@ -82,7 +82,7 @@ namespace Aeronaus
             return false;
         }
 
-        public int PosicioLliure(ref Aeronau[] aeronaus)
+        public int posicioLliure(ref Aeronau[] aeronaus)
         {
             int posicioLliure = 5;
 
@@ -97,9 +97,9 @@ namespace Aeronaus
             return posicioLliure;
         }
 
-        public void CrearAeronau(int posicioLliure, String model, String fabricant, int capacitat, int x, int y, String matricula, ref Boolean aeronauCreada, ref Aeronau[] aeronaus)
+        public void crearAeronau(int posicioLliure, String model, String fabricant, int capacitat, int x, int y, String matricula, ref Boolean aeronauCreada, ref Aeronau[] aeronaus)
         {
-            Boolean matriculaOk = ComprovarOk(posicioLliure, matricula, ref aeronaus);
+            Boolean matriculaOk = comprovarOk(posicioLliure, matricula, ref aeronaus);
             if (matriculaOk)
             {
                 aeronauCreada = true;
@@ -108,221 +108,121 @@ namespace Aeronaus
             }
         }
 
-        public Boolean NauDisponible(int nau, ref Aeronau[] aeronaus)
+        public Boolean nauDisponible(int nau, ref Aeronau[] aeronaus)
         {
             if (aeronaus[nau] != null) return true;
             return false;
         }
-
-        public void setMotorOnOff(int aeronau, ref Aeronau[] aeronaus)
+        
+        public void motorOnOff(int aeronau, ref Aeronau[] aeronaus)
         {
             if (!aeronaus[aeronau].getMotorEnces())
             {
                 aeronaus[aeronau].setMotorEnces(true);
                 MessageBox.Show("Motor ences");
             }
-            else if (aeronaus[aeronau].getVelocitat() == 0 && aeronaus[aeronau].getAlcada() == 0 && aeronaus[aeronau].getTrenAterratgeDesplegat())
+            else
             {
                 aeronaus[aeronau].setMotorEnces(false);
                 MessageBox.Show("Motor apagat");
             }
-            else
+        }
+        //Done
+        public void accelerar(int aeronau, ref Aeronau[] aeronaus)
+        {
+            setX setAccelerar = new setX("Quant vols accelerar:");
+            setAccelerar.ShowDialog();
+            int velocitat = aeronaus[aeronau].getVelocitat() + setAccelerar.getValor;
+
+            if (velocitat >= 300 && aeronaus[aeronau].getTrenAterratgeDesplegat())
             {
-                if (aeronaus[aeronau].getVelocitat() > 0)
-                {
-                    MessageBox.Show("Baixa la velocitat a 0");
-                }
-                if (aeronaus[aeronau].getAlcada() > 0)
-                {
-                    MessageBox.Show("Baixa l'alçada a 0");
-                }
-                if (!aeronaus[aeronau].getTrenAterratgeDesplegat())
-                {
-                    MessageBox.Show("Desplega el tren d'aterratge");
-                }
+                MessageBox.Show("Per superar els 300 primer plega el tren d'aterratge");
+                return;
             }
+            aeronaus[aeronau].setVelocitat(velocitat);
+        }
+        //Done
+        public void frenar(int aeronau, ref Aeronau[] aeronaus)
+        {
+            setX setFrenar = new setX("Quant vols frenar:");
+            setFrenar.ShowDialog();
+            int velocitat = aeronaus[aeronau].getVelocitat() - setFrenar.getValor;
+
+            if(velocitat < 0)
+            {
+                MessageBox.Show("No es pot anar en negatiu");
+                return;
+            }
+            if (velocitat < 180 && aeronaus[aeronau].getAlcada() > 0)
+            {
+                MessageBox.Show("Primer baixa l'alçada");
+                return;
+            }
+            aeronaus[aeronau].setVelocitat(velocitat);
         }
 
-        public void SetVelocitat(int aeronau, ref Aeronau[] aeronaus)
+        public void pujar(int aeronau, ref Aeronau[] aeronaus)
         {
-            if (aeronaus[aeronau].getMotorEnces())
-            {
-                
-                setX setVelocitat = new setX("Introdueix velocitat:");
-                setVelocitat.ShowDialog();
-                int velocitat = setVelocitat.getValor;
-                setVelocitat.Close();
+            setX setPujar = new setX("Quant vols pujar:");
+            setPujar.ShowDialog();
+            int alcada = aeronaus[aeronau].getAlcada() + setPujar.getValor;
 
-                if (velocitat >= 300)
-                {
-                    if (!aeronaus[aeronau].getTrenAterratgeDesplegat())
-                    {
-                        aeronaus[aeronau].setVelocitat(velocitat);
-                        MessageBox.Show("Velocitat actualitzada");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Primer plega el tren d'aterratge");
-                    }
-                }
-                else if (velocitat < 300 && velocitat >= 180)
-                {
-                    aeronaus[aeronau].setVelocitat(velocitat);
-                    MessageBox.Show("Velocitat actualitzada");
-                }
-                else if (aeronaus[aeronau].getAlcada() < 100)
-                {
-                    if (aeronaus[aeronau].getTrenAterratgeDesplegat())
-                    {
-                        aeronaus[aeronau].setVelocitat(velocitat);
-                        MessageBox.Show("Velocitat actualitzada");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Primer desplega el tren d'aterratge");
-                    }
-                }
-            }
-            else
+            if (alcada >= 500 && aeronaus[aeronau].getTrenAterratgeDesplegat())
             {
-                MessageBox.Show("El motor esta apagat");
+                MessageBox.Show("Per superar els 500 metres primer plega el tren d'aterratge");
+                return;
             }
+            aeronaus[aeronau].setAlcada(alcada);
         }
 
-        public void SetAlcada(int aeronau, ref Aeronau[] aeronaus)
+        public void baixar(int aeronau, ref Aeronau[] aeronaus)
         {
-            if (aeronaus[aeronau].getMotorEnces())
-            {
-                setX setAlcada = new setX("Introdueix alcada:");
-                setAlcada.ShowDialog();
-                int alcada = setAlcada.getValor;
-                setAlcada.Close();
+            setX setBaixar = new setX("Quant vols baixar:");
+            setBaixar.ShowDialog();
+            int alcada = aeronaus[aeronau].getAlcada() - setBaixar.getValor;
 
-                if (aeronaus[aeronau].getVelocitat() >= 180)
-                {
-                    if (alcada >= 500)
-                    {
-                        if (aeronaus[aeronau].getTrenAterratgeDesplegat() == false)
-                        {
-                            aeronaus[aeronau].setAlcada(alcada);
-                            MessageBox.Show("Alçada actualitzada");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Primer plega el tren d'aterratge");
-                        }
-                    }
-                    else if (alcada < 500)
-                    {
-                        if (alcada < 100)
-                        {
-                            if (aeronaus[aeronau].getTrenAterratgeDesplegat() == true)
-                            {
-                                aeronaus[aeronau].setAlcada(alcada);
-                                MessageBox.Show("Alçada actualitzada");
-                            }
-                            else
-                            {
-                                MessageBox.Show("Primer desplega el tren d'aterratge");
-                            }
-                        }
-                        else
-                        {
-                            aeronaus[aeronau].setAlcada(alcada);
-                            MessageBox.Show("Alçada actualitzada");
-                        }
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Augmenta velocitat minim a 180 per augmentar l'alçada");
-                }
+            if (alcada < 0)
+            {
+                MessageBox.Show("No es pot anar en negatiu");
+                return;
+            }
+            if (alcada < 100 && !aeronaus[aeronau].getTrenAterratgeDesplegat())
+            {
+                MessageBox.Show("Primer desplega el tren d'aterratge");
+                return;
+            }
+            aeronaus[aeronau].setAlcada(alcada);
+        }
+        
+        public void trenAterratgeOnOff(int aeronau, ref Aeronau[] aeronaus)
+        {
+            if (!aeronaus[aeronau].getTrenAterratgeDesplegat())
+            {
+                MessageBox.Show("Tren desplegat");
+                aeronaus[aeronau].setTrenAterratgeDesplegat(true);
             }
             else
             {
-                MessageBox.Show("El motor esta apagat");
+                MessageBox.Show("Tren plegat");
+                aeronaus[aeronau].setTrenAterratgeDesplegat(false);
             }
         }
-
-        public void SetTrenAterratge(int aeronau, ref Aeronau[] aeronaus)
+        
+        public void aparcar(int aeronau, ref Aeronau[] aeronaus)
         {
-            if (aeronaus[aeronau].getMotorEnces())
-            {
-                if (aeronaus[aeronau].getTrenAterratgeDesplegat() == false)
-                {
-                    SetTrenAccio(aeronau, false, ref aeronaus);
-                }
-                else if (aeronaus[aeronau].getTrenAterratgeDesplegat() == true)
-                {
-                    if (aeronaus[aeronau].getAlcada() > 0)
-                    {
-                        SetTrenAccio(aeronau, true, ref aeronaus);
-                    }
-                    else
-                    {
-                       MessageBox.Show("Primer enlaira");
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("El motor esta apagat");
-            }
-        }
-
-        public void SetTrenAccio(int aeronau, Boolean desplegat, ref Aeronau[] aeronaus)
-        {
-            if (aeronaus[aeronau].getAlcada() < 500 && aeronaus[aeronau].getVelocitat() < 300)
-            {
-                if (!desplegat)
-                {
-                    aeronaus[aeronau].setTrenAterratgeDesplegat(true);
-                    MessageBox.Show("Tren d'aterratge desplegat");
-                }
-                else
-                {
-                    aeronaus[aeronau].setTrenAterratgeDesplegat(false);
-                    MessageBox.Show("Tren d'aterratge plegat");
-                }
-            }
-            else
-            {
-                if (aeronaus[aeronau].getAlcada() >= 500)
-                {
-                    MessageBox.Show("Baixa l'altura a menys de 500 per desplegar el tren d'aterratge");
-                }
-                if (aeronaus[aeronau].getVelocitat() >= 300)
-                {
-                    MessageBox.Show("Baixa la velocitat a menys de 300 per desplegar el tren d'aterratge");
-                }
-            }
-        }
-
-        public void SetAparcat(int aeronau, ref Aeronau[] aeronaus)
-        {
-            if (!aeronaus[aeronau].getMotorEnces() && aeronaus[aeronau].getVelocitat() == 0 && aeronaus[aeronau].getAlcada() == 0)
+            if(aeronaus[aeronau].getAparcat() == false)
             {
                 aeronaus[aeronau].setAparcat(true);
                 MessageBox.Show("Aeronau aparcada");
             }
             else
             {
-                if (aeronaus[aeronau].getVelocitat() > 0)
-                {
-                    MessageBox.Show("Baixar velocitat a 0");
-                }
-                if (aeronaus[aeronau].getAlcada() > 0)
-                {
-                    MessageBox.Show("Baixat alçada a 0");
-                }
-                if (aeronaus[aeronau].getMotorEnces())
-                {
-                    MessageBox.Show("Apaga el motor");
-                }
+                aeronaus[aeronau].setAparcat(false);
+                MessageBox.Show("Aeronau operativa");
             }
         }
-
-        public void SetRumb(int aeronau, ref Aeronau[] aeronaus)
+        
+        public void rumb(int aeronau, ref Aeronau[] aeronaus)
         {
             setX setRumb = new setX("Introdueix rumb:");
             setRumb.ShowDialog();
@@ -337,55 +237,36 @@ namespace Aeronaus
                 MessageBox.Show("Rumb incorrecte");
             }
         }
+        
+        public void posicio(int aeronau, ref Aeronau[] aeronaus)
+        {            
+            setX x = new setX("Introdueix X:");
+            x.ShowDialog();
+            int X = x.getValor;
+            x.Close();
 
-        public void SetXY(int aeronau, ref Aeronau[] aeronaus)
-        {
-            if (aeronaus[aeronau].getMotorEnces())
+            setX y = new setX("Introdueix Y:");
+            y.ShowDialog();
+            int Y = y.getValor;
+            y.Close();
+            
+            for (int c = 0; c < aeronaus.Length; c++)
             {
-                if (aeronaus[aeronau].getAlcada() > 0)
+                if (aeronaus[c] != null && c != aeronau)
                 {
-                    setX x = new setX("Introdueix X:");
-                    x.ShowDialog();
-                    int X = x.getValor;
-                    x.Close();
-
-                    setX y = new setX("Introdueix Y:");
-                    y.ShowDialog();
-                    int Y = y.getValor;
-                    y.Close();
-
-                    Boolean error = false;
-                    for (int c = 0; c < aeronaus.Length; c++)
+                    if (aeronaus[c].getX() == X && aeronaus[c].getY() == Y &&
+                        aeronaus[c].getAlcada() == aeronaus[aeronau].getAlcada())
                     {
-                        if (aeronaus[aeronau] != null)
-                        {
-                            if ((aeronaus[aeronau].getX() - X) <= 1 && (aeronaus[aeronau].getY() - Y) <= 1
-                                    && (aeronaus[aeronau].getX() - X) >= -1 && (aeronaus[aeronau].getY() - Y) >= -1)
-                            {
-                                MessageBox.Show("Les naus no es poden creuar");
-                                error = true;
-                                break;
-                            }
-                        }
-                    }
-                    if (error == false)
-                    {
-                        aeronaus[aeronau].setXY(X, Y);
-                        MessageBox.Show("X i Y actualitzats");
+                        MessageBox.Show("Les naus no es poden creuar");
+                        return;
                     }
                 }
-                else
-                {
-                    MessageBox.Show("Primer enlaira");
-                }
             }
-            else
-            {
-                MessageBox.Show("El motor esta apagat");
-            }
+            aeronaus[aeronau].setXY(X, Y);
+            MessageBox.Show("X i Y actualitzats");           
         }
-
-        public Boolean ComprovarOk(int posicioLliure, String matricula, ref Aeronau[] aeronaus)
+        
+        public Boolean comprovarOk(int posicioLliure, String matricula, ref Aeronau[] aeronaus)
         {
             Boolean ok = true;
             for (int c = 0; c < 5; c++)

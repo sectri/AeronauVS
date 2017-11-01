@@ -107,7 +107,6 @@
             this.menuSeleccionarNau5.TabIndex = 4;
             this.menuSeleccionarNau5.Text = "No disponible";
             this.menuSeleccionarNau5.UseVisualStyleBackColor = true;
-            this.menuSeleccionarNau5.EnabledChanged += new System.EventHandler(this.menuSeleccionarNau_EnabledChanged);
             this.menuSeleccionarNau5.Click += new System.EventHandler(this.menuSeleccionarNau5_Click);
             // 
             // MenuSeleccionarNau
