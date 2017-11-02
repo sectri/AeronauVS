@@ -28,17 +28,17 @@ namespace Aeronaus
                             {
                                 if ((X < 50 && X > -50) && (Y < 50 && Y > -50))
                                 {
-                                    MessageBox.Show("Perill de colisió: " + aeronaus[c1].getMatricula() + " i " + aeronaus[c2].getMatricula() + ": Mateixa X i Y. Alçada de " + alcada + " metres entre elles", "Perill",
+                                    MessageBox.Show("Perill de colisió: " + aeronaus[c1].getMatricula() + " i " + aeronaus[c2].getMatricula() + ": X i Y massa a prop. Alçada de " + alcada + " metres entre elles", "Perill",
                                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 }
                                 else if (X < 50 && X > -50)
                                 {
-                                    Console.Write("Perill de colisió: " + aeronaus[c1].getMatricula() + " i " + aeronaus[c2].getMatricula() + ": Mateixa X. Alçada de " + alcada + " metres entre elles", "Perill",
+                                    Console.Write("Perill de colisió: " + aeronaus[c1].getMatricula() + " i " + aeronaus[c2].getMatricula() + ": X massa a prop. Alçada de " + alcada + " metres entre elles", "Perill",
                                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 }
                                 else if (Y < 50 && Y > -50)
                                 {
-                                    Console.Write("Perill de colisió: " + aeronaus[c1].getMatricula() + " i " + aeronaus[c2].getMatricula() + ": Mateixa Y. Alçada de " + alcada + " metres entre elles", "Perill",
+                                    Console.Write("Perill de colisió: " + aeronaus[c1].getMatricula() + " i " + aeronaus[c2].getMatricula() + ": Y massa a prop. Alçada de " + alcada + " metres entre elles", "Perill",
                                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 }
                             }
@@ -127,7 +127,7 @@ namespace Aeronaus
                 MessageBox.Show("Motor apagat");
             }
         }
-        //Done
+        
         public void accelerar(int aeronau, ref Aeronau[] aeronaus)
         {
             setX setAccelerar = new setX("Quant vols accelerar:");
@@ -141,7 +141,7 @@ namespace Aeronaus
             }
             aeronaus[aeronau].setVelocitat(velocitat);
         }
-        //Done
+        
         public void frenar(int aeronau, ref Aeronau[] aeronaus)
         {
             setX setFrenar = new setX("Quant vols frenar:");

@@ -20,6 +20,15 @@ namespace Aeronaus
         public finestraPrincipal()
         {
             InitializeComponent();
+            MessageBox.Show("Explicació del programa: \n\n" +
+                "-Les naus es creen en el hangar \n\n" +
+                "-Motor: Per apagar s'ha d'estar a 0 metres i 0km/h \n\n" +
+                "-Enlairar: Anar entre 180km/h i 300km/h \n\n" +
+                "-Aterrar: Tren desplegat entre 100 i 500 metres \n\n" +
+                "-Tren: Entre 100 i 500 metres i entre 180km/h i 300km/h \n\n" +
+                "-Aparcat: Tenir el motor apagat \n\n" +
+                "-X, Y i Rumb: Estar enlairat" +
+                "", "Aeronaus", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void gestionarAvio_Click(object sender, EventArgs e)
@@ -37,6 +46,7 @@ namespace Aeronaus
                 if (aeronauPilotada)
                 {
                     sistemaControl.mantenimentAeri(ref aeronaus);
+                    sistemaControl.perills(ref aeronaus);
                     EstatNaus estatNaus = new EstatNaus(ref aeronaus);
                     estatNaus.ShowDialog();
                     this.Show();
@@ -55,6 +65,7 @@ namespace Aeronaus
             if (nausDisponibles)
             {
                 sistemaControl.mantenimentAeri(ref aeronaus);
+                sistemaControl.perills(ref aeronaus);
             }
             else
             {
