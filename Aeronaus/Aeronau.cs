@@ -20,10 +20,6 @@ namespace Aeronaus
         private int rumb;
         private Boolean aparcat = false;
         private Boolean trenAterratgeDesplegat = true;
-        private Action<object, EventArgs> introduirModel_TextChanged;
-        private Action<object, EventArgs> introduirFabricant_TextChanged;
-        private Action<object, EventArgs> introduirCapacitat_TextChanged;
-        private object introduirMatricula_TextChanged;
 
         public Aeronau(String model, String fabricant, int capacitat, int X, int Y, String matricula)
         {
@@ -33,16 +29,6 @@ namespace Aeronaus
             this.x = X;
             this.y = Y;
             this.matricula = matricula;
-        }
-
-        public Aeronau(Action<object, EventArgs> introduirModel_TextChanged, Action<object, EventArgs> introduirFabricant_TextChanged, Action<object, EventArgs> introduirCapacitat_TextChanged, int x, int y, object introduirMatricula_TextChanged)
-        {
-            this.introduirModel_TextChanged = introduirModel_TextChanged;
-            this.introduirFabricant_TextChanged = introduirFabricant_TextChanged;
-            this.introduirCapacitat_TextChanged = introduirCapacitat_TextChanged;
-            this.x = x;
-            this.y = y;
-            this.introduirMatricula_TextChanged = introduirMatricula_TextChanged;
         }
 
 
